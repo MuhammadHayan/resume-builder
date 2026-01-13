@@ -94,7 +94,7 @@ class _SkillsSummaryScreenState extends State<SkillsSummaryScreen> {
           Padding(
             padding: const EdgeInsets.all(20),
             child: PrimaryButton(
-              text: 'View CV',
+              text: 'Save Skills',
               onTap: () {
                 Navigator.push(
                   context,

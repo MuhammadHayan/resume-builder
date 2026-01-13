@@ -4,7 +4,6 @@ import 'package:resume_builder/cores/responsive/responsive.dart';
 import 'package:resume_builder/cores/widgets/app_text_field.dart';
 import 'package:resume_builder/cores/widgets/primary_button.dart';
 import 'package:resume_builder/features/experience/widgets/form_field_label.dart';
-import 'package:resume_builder/features/experience/widgets/step_indicator.dart';
 
 class WorkExperienceScreen extends StatefulWidget {
   const WorkExperienceScreen({super.key});
@@ -21,11 +20,7 @@ class _WorkExperienceScreenState extends State<WorkExperienceScreen> {
     final isMobile = Responsive.isMobile(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Work Experience'),
-        centerTitle: true,
-        actions: [TextButton(onPressed: () {}, child: const Text('Skip'))],
-      ),
+      appBar: AppBar(title: const Text('Add Experience'), centerTitle: true),
       body: Column(
         children: [
           Expanded(
@@ -37,9 +32,6 @@ class _WorkExperienceScreenState extends State<WorkExperienceScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const StepIndicator(totalSteps: 5, currentStep: 1),
-                  const SizedBox(height: 32),
-
                   const Text(
                     'Tell us about your last role',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -108,7 +100,7 @@ class _WorkExperienceScreenState extends State<WorkExperienceScreen> {
 
           Padding(
             padding: const EdgeInsets.all(20),
-            child: PrimaryButton(text: 'Next: Select Template', onTap: () {}),
+            child: PrimaryButton(text: 'Save Experience', onTap: () {}),
           ),
         ],
       ),

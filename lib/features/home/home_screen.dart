@@ -6,7 +6,7 @@ import 'package:resume_builder/cores/responsive/responsive.dart';
 import 'package:resume_builder/cores/theme/theme_provider.dart';
 import 'package:resume_builder/cores/widgets/primary_button.dart';
 import 'package:resume_builder/features/education/education_screen.dart';
-import 'package:resume_builder/features/experience/work_experience_screen.dart';
+import 'package:resume_builder/features/experience/add_experience.dart';
 import 'package:resume_builder/features/home/widgets/menu_card.dart';
 import 'package:resume_builder/features/personal/personal_screen.dart';
 import 'package:resume_builder/features/skills/skills_summary_screen.dart';
@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                     style: AppFonts.headline.copyWith(fontSize: 18),
                   ),
                   const SizedBox(height: 16),
-                  _menuGrid(context),
+                  _menuList(context),
                 ],
               ),
             ),
@@ -78,7 +78,7 @@ class HomeScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Hello, Alex 👋',
+          'Hello, There 👋',
           style: AppFonts.headline.copyWith(
             color: Theme.of(context).colorScheme.primary,
           ),
@@ -128,35 +128,42 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // ---------------- MENU GRID ----------------
-  Widget _menuGrid(BuildContext context) {
-    return GridView(
+  // ---------------- MENU List ----------------
+  Widget _menuList(BuildContext context) {
+    return ListView(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 16,
-        crossAxisSpacing: 16,
-        childAspectRatio: 1.1,
-      ),
       children: [
         MenuCard(
-          title: 'Personal Info',
+          title: 'Personal Details',
           icon: Icons.badge_outlined,
           onTap: () => _go(context, const PersonalScreen()),
         ),
-        MenuCard(
-          title: 'Experience',
-          icon: Icons.work_outline,
-          onTap: () => _go(context, const WorkExperienceScreen()),
-        ),
+        const SizedBox(height: 16),
+
         MenuCard(
           title: 'Education',
           icon: Icons.school_outlined,
           onTap: () => _go(context, const EducationScreen()),
         ),
+        const SizedBox(height: 16),
+
+        MenuCard(
+          title: 'Experience',
+          icon: Icons.work_outline,
+          onTap: () => _go(context, const WorkExperienceScreen()),
+        ),
+        const SizedBox(height: 16),
+
         MenuCard(
           title: 'Skills',
+          icon: Icons.psychology_outlined,
+          onTap: () => _go(context, const SkillsSummaryScreen()),
+        ),
+        const SizedBox(height: 16),
+
+        MenuCard(
+          title: 'Objective',
           icon: Icons.psychology_outlined,
           onTap: () => _go(context, const SkillsSummaryScreen()),
         ),

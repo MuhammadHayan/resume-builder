@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:resume_builder/cores/constants/app_colors.dart';
 import 'package:resume_builder/cores/responsive/responsive.dart';
+import 'package:resume_builder/features/education/add_education.dart';
 import 'package:resume_builder/features/education/models/education_entry.dart';
 import 'package:resume_builder/features/education/widgets/education_card.dart';
 import 'package:resume_builder/features/education/widgets/info_banner.dart';
@@ -34,11 +35,7 @@ class EducationScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Education'),
-        centerTitle: true,
-        actions: [TextButton(onPressed: () {}, child: const Text('Preview'))],
-      ),
+      appBar: AppBar(title: const Text('Education'), centerTitle: true),
       body: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: isMobile ? 20 : 32,
@@ -68,7 +65,12 @@ class EducationScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const AddEducationScreen()),
+          );
+        },
         backgroundColor: AppColors.primary,
         child: const Icon(Icons.add, size: 28),
       ),
