@@ -5,14 +5,15 @@ import 'package:resume_builder/cores/widgets/app_text_field.dart';
 import 'package:resume_builder/cores/widgets/primary_button.dart';
 import 'package:resume_builder/features/experience/widgets/form_field_label.dart';
 
-class WorkExperienceScreen extends StatefulWidget {
-  const WorkExperienceScreen({super.key});
+class AddWorkExperienceScreen extends StatefulWidget {
+  const AddWorkExperienceScreen({super.key});
 
   @override
-  State<WorkExperienceScreen> createState() => _WorkExperienceScreenState();
+  State<AddWorkExperienceScreen> createState() =>
+      _AddWorkExperienceScreenState();
 }
 
-class _WorkExperienceScreenState extends State<WorkExperienceScreen> {
+class _AddWorkExperienceScreenState extends State<AddWorkExperienceScreen> {
   bool currentlyWorkHere = false;
 
   @override

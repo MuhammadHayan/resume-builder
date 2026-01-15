@@ -65,6 +65,7 @@ class EducationScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        shape: CircleBorder(),
         onPressed: () {
           Navigator.push(
             context,
@@ -72,7 +73,7 @@ class EducationScreen extends StatelessWidget {
           );
         },
         backgroundColor: AppColors.primary,
-        child: const Icon(Icons.add, size: 28),
+        child: const Icon(Icons.add, size: 28, color: Colors.white),
       ),
     );
   }

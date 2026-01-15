@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:resume_builder/cores/theme/app_theme.dart';
 import 'package:resume_builder/cores/theme/theme_provider.dart';
+import 'package:resume_builder/features/home2/home_dashboard_screen.dart';
 import 'features/home/home_screen.dart';
 
 void main() {
@@ -25,7 +26,7 @@ class ResumeApp extends StatelessWidget {
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: theme.mode,
-      home: const HomeScreen(),
+      home: const HomeDashboardScreen(),
     );
   }
 }

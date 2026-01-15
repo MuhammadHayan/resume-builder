@@ -3,10 +3,7 @@ import 'package:resume_builder/cores/constants/app_colors.dart';
 import 'package:resume_builder/cores/responsive/responsive.dart';
 import 'package:resume_builder/cores/widgets/primary_button.dart';
 import 'package:resume_builder/features/cv_preview/cv_preview_screen.dart';
-
-import 'widgets/pro_tip_banner.dart';
 import 'widgets/skill_chip.dart';
-import 'widgets/summary_editor.dart';
 
 class SkillsSummaryScreen extends StatefulWidget {
   const SkillsSummaryScreen({super.key});
@@ -36,7 +33,7 @@ class _SkillsSummaryScreenState extends State<SkillsSummaryScreen> {
     final isMobile = Responsive.isMobile(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Skills & Summary'), centerTitle: true),
+      appBar: AppBar(title: const Text('Add Skills'), centerTitle: true),
       body: Column(
         children: [
           Expanded(
@@ -69,22 +66,6 @@ class _SkillsSummaryScreenState extends State<SkillsSummaryScreen> {
                           ),
                         )
                         .toList(),
-                  ),
-
-                  const SizedBox(height: 40),
-
-                  _header(
-                    'Professional Summary',
-                    'Briefly describe your career goals and achievements.',
-                  ),
-                  const SizedBox(height: 16),
-
-                  const SummaryEditor(),
-                  const SizedBox(height: 24),
-
-                  const ProTipBanner(
-                    tip:
-                        'Focus on measurable results. Use action verbs like "Increased", "Led", or "Developed".',
                   ),
                 ],
               ),

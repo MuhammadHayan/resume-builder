@@ -6,10 +6,10 @@ import 'package:resume_builder/cores/responsive/responsive.dart';
 import 'package:resume_builder/cores/theme/theme_provider.dart';
 import 'package:resume_builder/cores/widgets/primary_button.dart';
 import 'package:resume_builder/features/education/education_screen.dart';
-import 'package:resume_builder/features/experience/add_experience.dart';
+import 'package:resume_builder/features/experience/experience_screen.dart';
 import 'package:resume_builder/features/home/widgets/menu_card.dart';
-import 'package:resume_builder/features/personal/personal_screen.dart';
-import 'package:resume_builder/features/skills/skills_summary_screen.dart';
+import 'package:resume_builder/features/personal_details/personal_screen.dart';
+import 'package:resume_builder/features/skills/skills_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -151,7 +151,7 @@ class HomeScreen extends StatelessWidget {
         MenuCard(
           title: 'Experience',
           icon: Icons.work_outline,
-          onTap: () => _go(context, const WorkExperienceScreen()),
+          onTap: () => _go(context, const WorkHistoryScreen()),
         ),
         const SizedBox(height: 16),
 

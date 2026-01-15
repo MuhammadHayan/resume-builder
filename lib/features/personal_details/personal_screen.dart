@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:resume_builder/cores/responsive/responsive.dart';
 import 'package:resume_builder/cores/widgets/primary_button.dart';
-import 'package:resume_builder/features/personal/widgets/labeled_field.dart';
+import 'package:resume_builder/features/personal_details/widgets/labeled_field.dart';
 import 'widgets/profile_image_picker.dart';
 
 class PersonalScreen extends StatelessWidget {
