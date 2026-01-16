@@ -1,5 +1,7 @@
 // widgets/draft_card.dart
 import 'package:flutter/material.dart';
+import 'package:resume_builder/cores/constants/app_fonts.dart';
+import 'package:resume_builder/cores/responsive/responsive.dart';
 import '../models/draft.dart';
 
 class DraftCard extends StatelessWidget {
@@ -9,28 +11,31 @@ class DraftCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = Responsive.isMobile(context);
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Container(
-      width: 200,
-      margin: const EdgeInsets.only(right: 16),
+      width: isMobile ? 200 : 220,
       decoration: BoxDecoration(
-        color: const Color(0xFF1C1F26),
+        color: colorScheme.surface,
         borderRadius: BorderRadius.circular(18),
+        border: Border.all(
+          width: 0.6,
+          color: colorScheme.outline.withValues(alpha: 0.5),
+        ),
       ),
+      clipBehavior: Clip.antiAlias,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Stack(
               children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(18),
-                  ),
-                  child: Image.network(
-                    draft.imageUrl,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
+                Image.network(
+                  draft.imageUrl,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
                 ),
                 if (draft.isNew)
                   Positioned(
@@ -42,15 +47,15 @@ class DraftCard extends StatelessWidget {
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.green,
+                        color: colorScheme.primary,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Text(
+                      child: Text(
                         'NEW',
-                        style: TextStyle(
-                          color: Colors.white,
+                        style: AppFonts.body.copyWith(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
+                          color: colorScheme.onPrimary,
                         ),
                       ),
                     ),
@@ -59,21 +64,28 @@ class DraftCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(12),
+            padding: EdgeInsets.all(isMobile ? 12 : 14),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   draft.title,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppFonts.body.copyWith(
                     fontWeight: FontWeight.w600,
+                    color: colorScheme.onSurface,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   draft.subtitle,
-                  style: const TextStyle(color: Colors.white54, fontSize: 12),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppFonts.body.copyWith(
+                    fontSize: 12,
+                    color: colorScheme.onSurface.withValues(alpha: 0.6),
+                  ),
                 ),
               ],
             ),

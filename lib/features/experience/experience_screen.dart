@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:resume_builder/features/experience/add_experience.dart';
 import 'package:resume_builder/features/experience/models/work_experience.dart';
-import 'package:resume_builder/features/experience/widgets/pro_tip_card.dart';
+import 'package:resume_builder/cores/widgets/pro_tip_card.dart';
 import 'package:resume_builder/features/experience/widgets/work_experience_card.dart';
 
 class WorkHistoryScreen extends StatelessWidget {
@@ -53,7 +53,10 @@ class WorkHistoryScreen extends StatelessWidget {
                   for (final exp in experiences)
                     WorkExperienceCard(experience: exp),
                   const SizedBox(height: 8),
-                  const ProTipCard(),
+                  const ProTipCard(
+                    text:
+                        "Ensure your most recent 3 roles include at least 4 bullet points each for better ATS performance.",
+                  ),
                 ],
               ),
             ),

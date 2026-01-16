@@ -1,32 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:resume_builder/cores/theme/app_theme.dart';
-import 'package:resume_builder/cores/theme/theme_provider.dart';
-import 'package:resume_builder/features/home2/home_dashboard_screen.dart';
-import 'features/home/home_screen.dart';
+import 'package:resume_builder/features/Dashboard/dashboard_screen.dart';
+import 'cores/theme/theme_provider.dart';
+import 'cores/theme/app_theme.dart';
 
 void main() {
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeProvider(),
-      child: const ResumeApp(),
+      child: const ResumeBuilderApp(),
     ),
   );
 }
 
-class ResumeApp extends StatelessWidget {
-  const ResumeApp({super.key});
+class ResumeBuilderApp extends StatelessWidget {
+  const ResumeBuilderApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.watch<ThemeProvider>();
+    final themeProvider = context.watch<ThemeProvider>();
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
-      themeMode: theme.mode,
-      home: const HomeDashboardScreen(),
+      themeMode: themeProvider.mode,
+      home: const DashboardScreen(),
     );
   }
 }
