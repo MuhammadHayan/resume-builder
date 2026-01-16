@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:resume_builder/cores/constants/app_colors.dart';
 import 'package:resume_builder/cores/constants/app_fonts.dart';
 
 class ProfileImagePicker extends StatelessWidget {
@@ -7,21 +6,34 @@ class ProfileImagePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Column(
       children: [
         Stack(
           children: [
-            const CircleAvatar(
-              radius: 60,
-              backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+            CircleAvatar(
+              radius: 56,
+              backgroundColor: colorScheme.surfaceContainerHighest,
+              backgroundImage: const NetworkImage(
+                'https://via.placeholder.com/150',
+              ),
             ),
             Positioned(
               bottom: 0,
               right: 0,
-              child: CircleAvatar(
-                radius: 18,
-                backgroundColor: AppColors.primary,
-                child: const Icon(Icons.edit, size: 18, color: Colors.white),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(20),
+                onTap: () {},
+                child: CircleAvatar(
+                  radius: 18,
+                  backgroundColor: colorScheme.primary,
+                  child: Icon(
+                    Icons.edit_outlined,
+                    size: 18,
+                    color: colorScheme.onPrimary,
+                  ),
+                ),
               ),
             ),
           ],
@@ -29,12 +41,15 @@ class ProfileImagePicker extends StatelessWidget {
         const SizedBox(height: 16),
         Text(
           'Add a professional photo',
-          style: AppFonts.headline.copyWith(fontSize: 18),
+          style: AppFonts.headline.copyWith(
+            fontSize: 18,
+            color: colorScheme.onSurface,
+          ),
         ),
         const SizedBox(height: 4),
         Text(
-          'Recommended: Square image, 400×400px',
-          style: AppFonts.body.copyWith(color: Colors.grey),
+          'Square image • Minimum 400×400px',
+          style: Theme.of(context).textTheme.bodySmall,
         ),
       ],
     );

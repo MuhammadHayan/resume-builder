@@ -33,33 +33,35 @@ class DashboardScreen extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(isMobile ? 16 : 24),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const _Header(),
-              const SizedBox(height: 24),
-              const CreateCvCard(),
-              const SizedBox(height: 28),
-              _SectionHeader(title: 'Recent Drafts'),
-              const SizedBox(height: 16),
-              SizedBox(
-                height: isMobile ? 240 : 280,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: drafts.length,
-                  separatorBuilder: (_, _) => const SizedBox(width: 16),
-                  itemBuilder: (_, index) {
-                    return DraftCard(draft: drafts[index]);
-                  },
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const _Header(),
+                const SizedBox(height: 24),
+                const CreateCvCard(),
+                const SizedBox(height: 28),
+                _SectionHeader(title: 'Recent Drafts'),
+                const SizedBox(height: 16),
+                SizedBox(
+                  height: isMobile ? 240 : 280,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: drafts.length,
+                    separatorBuilder: (_, _) => const SizedBox(width: 16),
+                    itemBuilder: (_, index) {
+                      return DraftCard(draft: drafts[index]);
+                    },
+                  ),
                 ),
-              ),
-              const SizedBox(height: 24),
-              const ProTipCard(
-                text:
-                    "Users who include a “Key Achievements” section see 40% more replies to their resumes.",
-              ),
-            ],
+                const SizedBox(height: 24),
+                const ProTipCard(
+                  text:
+                      "Users who include a “Key Achievements” section see 40% more replies to their resumes.",
+                ),
+              ],
+            ),
           ),
         ),
       ),

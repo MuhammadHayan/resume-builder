@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constants/app_colors.dart';
+import '../constants/app_fonts.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String text;
@@ -9,18 +9,25 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return SizedBox(
-      height: 56,
+      height: 52,
       width: double.infinity,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
+      child: FilledButton(
+        onPressed: onTap,
+        style: FilledButton.styleFrom(
+          backgroundColor: colorScheme.primary,
+          foregroundColor: colorScheme.onPrimary,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          textStyle: AppFonts.body.copyWith(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        onPressed: onTap,
-        child: Text(text, style: TextStyle(color: Colors.white)),
+        child: Text(text),
       ),
     );
   }

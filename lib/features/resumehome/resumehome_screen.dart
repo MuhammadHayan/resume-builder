@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:resume_builder/cores/constants/app_colors.dart';
 import 'package:resume_builder/cores/constants/app_fonts.dart';
 import 'package:resume_builder/cores/responsive/responsive.dart';
 import 'package:resume_builder/cores/widgets/primary_button.dart';
 import 'package:resume_builder/features/education/education_screen.dart';
 import 'package:resume_builder/features/experience/experience_screen.dart';
-import 'package:resume_builder/features/resumehome/widgets/menu_card.dart';
-import 'package:resume_builder/features/personal_details/personal_screen.dart';
+import 'package:resume_builder/features/personal_details/personal_details_screen.dart';
+import 'package:resume_builder/features/resumehome/widgets/progress_card.dart';
 import 'package:resume_builder/features/skills/skills_screen.dart';
+import 'widgets/menu_card.dart';
 
 class ResumeHomeScreen extends StatelessWidget {
   const ResumeHomeScreen({super.key});
@@ -15,121 +15,97 @@ class ResumeHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isMobile = Responsive.isMobile(context);
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.all(isMobile ? 20 : 32),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _progressCard(context),
-                  const SizedBox(height: 32),
-                  Text(
-                    'Resume Sections',
-                    style: AppFonts.headline.copyWith(fontSize: 18),
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(isMobile ? 16 : 24),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ProgressCard(),
+                const SizedBox(height: 32),
+
+                Text(
+                  'Build Your Resume',
+                  style: AppFonts.headline.copyWith(
+                    fontSize: 20,
+                    color: colorScheme.onSurface,
                   ),
-                  const SizedBox(height: 16),
-                  _menuList(context),
-                ],
-              ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  'Complete each section to improve your chances',
+                  style: theme.textTheme.bodySmall,
+                ),
+
+                const SizedBox(height: 24),
+                _MenuGrid(),
+              ],
             ),
           ),
-        ],
-      ),
-      bottomNavigationBar: _bottomBar(context),
-    );
-  } // ---------------- PROGRESS CARD ----------------
-
-  Widget _progressCard(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [AppColors.primary, AppColors.primary.withValues(alpha: 0.8)],
         ),
-        borderRadius: BorderRadius.circular(20),
       ),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text('Overall Progress', style: TextStyle(color: Colors.white)),
-              Text(
-                '60%',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          const LinearProgressIndicator(
-            value: 0.6,
-            backgroundColor: Colors.white24,
-            valueColor: AlwaysStoppedAnimation(Colors.white),
-          ),
-        ],
-      ),
+      bottomNavigationBar: _BottomBar(),
     );
   }
+}
 
-  // ---------------- MENU List ----------------
-  Widget _menuList(BuildContext context) {
-    return ListView(
+class _MenuGrid extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final isMobile = Responsive.isMobile(context);
+
+    return GridView.count(
       shrinkWrap: true,
+      crossAxisCount: isMobile ? 2 : 3,
+      crossAxisSpacing: 16,
+      mainAxisSpacing: 16,
       physics: const NeverScrollableScrollPhysics(),
       children: [
         MenuCard(
           title: 'Personal Details',
-          icon: Icons.badge_outlined,
+          icon: Icons.person_outline,
           onTap: () => _go(context, const PersonalScreen()),
         ),
-        const SizedBox(height: 16),
-
         MenuCard(
           title: 'Education',
           icon: Icons.school_outlined,
           onTap: () => _go(context, const EducationScreen()),
         ),
-        const SizedBox(height: 16),
-
         MenuCard(
           title: 'Experience',
           icon: Icons.work_outline,
           onTap: () => _go(context, const WorkHistoryScreen()),
         ),
-        const SizedBox(height: 16),
-
         MenuCard(
           title: 'Skills',
           icon: Icons.psychology_outlined,
           onTap: () => _go(context, const SkillsSummaryScreen()),
         ),
-        const SizedBox(height: 16),
-
         MenuCard(
           title: 'Objective',
-          icon: Icons.psychology_outlined,
+          icon: Icons.track_changes_outlined,
           onTap: () => _go(context, const SkillsSummaryScreen()),
         ),
       ],
     );
   }
 
-  // ---------------- BOTTOM BAR ----------------
-  Widget _bottomBar(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: PrimaryButton(text: 'Preview Full CV', onTap: () {}),
-    );
-  }
-
   void _go(BuildContext context, Widget page) {
     Navigator.push(context, MaterialPageRoute(builder: (_) => page));
+  }
+}
+
+class _BottomBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+      child: PrimaryButton(text: 'Preview Resume', onTap: () {}),
+    );
   }
 }

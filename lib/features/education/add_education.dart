@@ -1,5 +1,8 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:resume_builder/cores/responsive/responsive.dart';
+import 'package:resume_builder/cores/widgets/form_labeled_field.dart';
+import 'package:resume_builder/cores/widgets/primary_button.dart';
 
 class AddEducationScreen extends StatefulWidget {
   const AddEducationScreen({super.key});
@@ -13,86 +16,94 @@ class _AddEducationScreenState extends State<AddEducationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = Responsive.isMobile(context);
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        leading: const BackButton(color: Colors.black),
-        title: const Text(
-          'Add Education',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-      ),
+      appBar: AppBar(title: const Text('Add Education'), centerTitle: true),
       body: SafeArea(
         child: Column(
           children: [
+            /// Scrollable Form
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
+                padding: EdgeInsets.symmetric(
+                  horizontal: isMobile ? 20 : 32,
                   vertical: 16,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const FormLabel(text: 'School / Uiversity'),
-                    const AppTextField(hint: 'e.g., Harvard University'),
+                    const LabeledField(
+                      label: 'School / University',
+                      hint: 'e.g. Harvard University',
+                      icon: Icons.school_outlined,
+                    ),
 
-                    const FormLabel(text: 'Course / Degree'),
-                    const AppTextField(hint: 'e.g., Bachelor of Science'),
+                    const LabeledField(
+                      label: 'Course / Degree',
+                      hint: 'e.g. Bachelor of Science',
+                      icon: Icons.menu_book_outlined,
+                    ),
 
-                    const FormLabel(text: 'Grade / Score'),
-                    const AppTextField(hint: 'e.g., 3.7 GPA'),
+                    const LabeledField(
+                      label: 'Grade / Score',
+                      hint: 'e.g. 3.7 GPA',
+                      icon: Icons.grade_outlined,
+                    ),
 
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 12),
+
                     Row(
                       children: const [
                         Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              FormLabel(text: 'Start Date'),
-                              AppTextField(hint: 'MM / YYYY'),
-                            ],
+                          child: LabeledField(
+                            label: 'Start Date',
+                            hint: 'MM / YYYY',
+                            icon: Icons.calendar_today_outlined,
                           ),
                         ),
                         SizedBox(width: 16),
                         Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              FormLabel(text: 'End Date'),
-                              AppTextField(hint: 'MM / YYYY'),
-                            ],
+                          child: LabeledField(
+                            label: 'End Date',
+                            hint: 'MM / YYYY',
+                            icon: Icons.event_outlined,
                           ),
                         ),
                       ],
                     ),
 
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 4),
+
                     Row(
                       children: [
                         Checkbox(
                           value: _currentlyStudying,
+                          activeColor: colorScheme.primary,
                           onChanged: (val) {
-                            setState(() => _currentlyStudying = val ?? false);
+                            setState(() {
+                              _currentlyStudying = val ?? false;
+                            });
                           },
                         ),
-                        const Text(
+                        Text(
                           'I am currently studying here',
-                          style: TextStyle(fontSize: 15),
+                          style: theme.textTheme.bodyMedium,
                         ),
                       ],
                     ),
 
-                    const SizedBox(height: 16),
-                    const FormLabel(text: 'Description (Optional)'),
-                    const AppTextField(
-                      hint: 'Relevant coursework, honors, or activities',
+                    const LabeledField(
+                      label: 'Description (Optional)',
+                      hint:
+                          'Relevant coursework, honors, or academic activities',
+                      icon: Icons.notes_outlined,
                       maxLines: 4,
                     ),
+
+                    const SizedBox(height: 24),
                   ],
                 ),
               ),
@@ -100,83 +111,21 @@ class _AddEducationScreenState extends State<AddEducationScreen> {
 
             /// Bottom Save Button
             Container(
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border(top: BorderSide(color: Colors.grey.shade200)),
+              padding: EdgeInsets.fromLTRB(
+                isMobile ? 20 : 32,
+                16,
+                isMobile ? 20 : 32,
+                24,
               ),
-              child: SizedBox(
-                width: double.infinity,
-                height: 56,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context); // save later
-                  },
-                  child: const Text(
-                    'Save Education',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+
+              child: PrimaryButton(
+                text: 'Save Education',
+                onTap: () {
+                  Navigator.pop(context);
+                },
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-/// ---------- REUSABLE WIDGETS ----------
-
-class FormLabel extends StatelessWidget {
-  final String text;
-  const FormLabel({super.key, required this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8, top: 16),
-      child: Text(
-        text,
-        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-      ),
-    );
-  }
-}
-
-class AppTextField extends StatelessWidget {
-  final String hint;
-  final int maxLines;
-
-  const AppTextField({super.key, required this.hint, this.maxLines = 1});
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      maxLines: maxLines,
-      decoration: InputDecoration(
-        hintText: hint,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 14,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Color(0xFFE0E6ED)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.blue, width: 2),
         ),
       ),
     );

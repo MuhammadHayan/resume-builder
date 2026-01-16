@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:resume_builder/cores/constants/app_colors.dart';
 import '../models/education_entry.dart';
 
 class EducationCard extends StatelessWidget {
@@ -9,60 +8,72 @@ class EducationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
+        color: colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.2)),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _logo(colorScheme),
+          const SizedBox(width: 16),
+
+          Expanded(child: _content(context)),
+
+          Column(
+            children: [
+              Icon(
+                Icons.drag_indicator,
+                color: colorScheme.onSurface.withValues(alpha: 0.4),
+              ),
+              const SizedBox(height: 12),
+              Icon(
+                Icons.edit_outlined,
+                color: colorScheme.onSurface.withValues(alpha: 0.6),
+              ),
+            ],
           ),
         ],
       ),
-      child: Row(
-        children: [
-          _logo(),
-          const SizedBox(width: 16),
-
-          Expanded(child: _content()),
-
-          const Icon(Icons.reorder, color: Colors.grey),
-          const SizedBox(width: 12),
-          const Icon(Icons.edit, color: Colors.grey),
-        ],
-      ),
     );
   }
 
-  Widget _logo() {
+  Widget _logo(ColorScheme colorScheme) {
     return Container(
-      width: 50,
-      height: 50,
+      width: 48,
+      height: 48,
       decoration: BoxDecoration(
-        color: AppColors.primary.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(10),
+        color: colorScheme.primary.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(12),
       ),
-      child: const Icon(Icons.school, color: AppColors.primary),
+      child: Icon(Icons.school, color: colorScheme.primary),
     );
   }
 
-  Widget _content() {
+  Widget _content(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           entry.degree,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
         ),
-        const SizedBox(height: 4),
-        Text(entry.school, style: const TextStyle(color: Colors.blueGrey)),
+        const SizedBox(height: 6),
+        Text(
+          entry.school,
+          style: textTheme.bodyMedium?.copyWith(color: Colors.blueGrey),
+        ),
         const SizedBox(height: 4),
         Text(
           entry.duration,
-          style: const TextStyle(color: Colors.grey, fontSize: 12),
+          style: textTheme.bodySmall?.copyWith(color: Colors.grey),
         ),
       ],
     );
