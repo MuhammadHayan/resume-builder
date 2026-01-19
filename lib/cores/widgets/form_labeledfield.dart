@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resume_builder/cores/constants/app_fonts.dart';
-import 'package:resume_builder/cores/widgets/app_text_field.dart';
+import 'package:resume_builder/cores/widgets/app_textfield.dart';
 
 class LabeledField extends StatelessWidget {
   final String label;

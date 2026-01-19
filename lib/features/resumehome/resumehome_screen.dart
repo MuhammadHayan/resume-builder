@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:resume_builder/cores/constants/app_fonts.dart';
 import 'package:resume_builder/cores/responsive/responsive.dart';
 import 'package:resume_builder/cores/widgets/primary_button.dart';
+import 'package:resume_builder/features/cv_preview/cv_preview_screen.dart';
 import 'package:resume_builder/features/education/education_screen.dart';
 import 'package:resume_builder/features/experience/experience_screen.dart';
+import 'package:resume_builder/features/objective/objective_screen.dart';
 import 'package:resume_builder/features/personal_details/personal_details_screen.dart';
 import 'package:resume_builder/features/resumehome/widgets/progress_card.dart';
 import 'package:resume_builder/features/skills/skills_screen.dart';
@@ -89,7 +91,7 @@ class _MenuGrid extends StatelessWidget {
         MenuCard(
           title: 'Objective',
           icon: Icons.track_changes_outlined,
-          onTap: () => _go(context, const SkillsSummaryScreen()),
+          onTap: () => _go(context, const ObjectiveScreen()),
         ),
       ],
     );
@@ -105,7 +107,15 @@ class _BottomBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-      child: PrimaryButton(text: 'Preview Resume', onTap: () {}),
+      child: PrimaryButton(
+        text: 'Preview Resume',
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const CVPreviewScreen()),
+          );
+        },
+      ),
     );
   }
 }

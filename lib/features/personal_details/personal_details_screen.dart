@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:resume_builder/cores/responsive/responsive.dart';
-import 'package:resume_builder/cores/widgets/form_labeled_field.dart';
+import 'package:resume_builder/cores/widgets/appbar.dart';
+import 'package:resume_builder/cores/widgets/form_labeledfield.dart';
 import 'package:resume_builder/cores/widgets/primary_button.dart';
 import 'widgets/profile_image_picker.dart';
 
@@ -13,11 +14,7 @@ class PersonalScreen extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Personal Details'),
-        centerTitle: true,
-        backgroundColor: colorScheme.surface,
-      ),
+      appBar: const AppAppBar(title: 'Personal Details'),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(
           horizontal: isMobile ? 16 : 28,

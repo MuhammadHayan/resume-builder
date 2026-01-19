@@ -1,7 +1,8 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:resume_builder/cores/responsive/responsive.dart';
-import 'package:resume_builder/cores/widgets/form_labeled_field.dart';
+import 'package:resume_builder/cores/widgets/appbar.dart';
+import 'package:resume_builder/cores/widgets/form_labeledfield.dart';
 import 'package:resume_builder/cores/widgets/primary_button.dart';
 
 class AddEducationScreen extends StatefulWidget {
@@ -21,11 +22,10 @@ class _AddEducationScreenState extends State<AddEducationScreen> {
     final colorScheme = theme.colorScheme;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Add Education'), centerTitle: true),
+      appBar: const AppAppBar(title: 'Add Education'),
       body: SafeArea(
         child: Column(
           children: [
-            /// Scrollable Form
             Expanded(
               child: SingleChildScrollView(
                 padding: EdgeInsets.symmetric(

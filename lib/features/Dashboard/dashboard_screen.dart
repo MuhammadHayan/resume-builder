@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:resume_builder/cores/constants/app_fonts.dart';
 import 'package:resume_builder/cores/responsive/responsive.dart';
 import 'package:resume_builder/cores/theme/theme_provider.dart';
-import 'package:resume_builder/cores/widgets/pro_tip_card.dart';
+import 'package:resume_builder/cores/widgets/protip_card.dart';
 import 'package:resume_builder/features/Dashboard/models/draft.dart';
 import 'package:resume_builder/features/Dashboard/widgets/create_cv_card.dart';
 import 'package:resume_builder/features/Dashboard/widgets/draft_card.dart';

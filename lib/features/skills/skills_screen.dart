@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:resume_builder/cores/responsive/responsive.dart';
+import 'package:resume_builder/cores/widgets/appbar.dart';
 import 'package:resume_builder/cores/widgets/primary_button.dart';
-import 'package:resume_builder/features/cv_preview/cv_preview_screen.dart';
 import 'package:resume_builder/features/skills/widgets/skill_chip.dart';
 
 class SkillsSummaryScreen extends StatefulWidget {
@@ -38,13 +38,7 @@ class _SkillsSummaryScreenState extends State<SkillsSummaryScreen> {
     final colorScheme = theme.colorScheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Add Skills'),
-        centerTitle: true,
-        backgroundColor: colorScheme.surface,
-        foregroundColor: colorScheme.onSurface,
-        elevation: 0,
-      ),
+      appBar: const AppAppBar(title: 'Add Skills'),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(
           horizontal: isMobile ? 20 : 32,
@@ -83,15 +77,7 @@ class _SkillsSummaryScreenState extends State<SkillsSummaryScreen> {
           horizontal: isMobile ? 20 : 32,
           vertical: 16,
         ),
-        child: PrimaryButton(
-          text: 'Save Skills',
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const CVPreviewScreen()),
-            );
-          },
-        ),
+        child: PrimaryButton(text: 'Save Skills', onTap: () {}),
       ),
     );
   }
