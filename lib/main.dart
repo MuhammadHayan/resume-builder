@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:resume_builder/resume_builder.dart';
-import 'cores/theme/theme_provider.dart';
 
-void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (_) => ThemeProvider(),
-      child: const ResumeBuilder(),
-    ),
-  );
+import 'package:resume_builder/data/local/hive_service.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await HiveService.init();
+
+  runApp(const ProviderScope(child: ResumeBuilder()));
 }

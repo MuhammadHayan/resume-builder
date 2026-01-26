@@ -28,7 +28,7 @@ class ResumeHomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ProgressCard(),
+                const ProgressCard(),
                 const SizedBox(height: 32),
 
                 Text(

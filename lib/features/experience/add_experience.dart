@@ -63,8 +63,8 @@ class _AddWorkExperienceScreenState extends State<AddWorkExperienceScreen> {
 
                     const SizedBox(height: 12),
 
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Expanded(
                           child: LabeledField(
                             label: 'Start Date',

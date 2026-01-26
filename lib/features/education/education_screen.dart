@@ -10,19 +10,19 @@ class EducationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final degrees = [
-      EducationEntry(
+      const EducationEntry(
         degree: 'Master of Business Administration',
         school: 'Harvard Business School',
         duration: '2023 - Present',
         logoUrl: '',
       ),
-      EducationEntry(
+      const EducationEntry(
         degree: 'B.S. in Computer Science',
         school: 'Stanford University',
         duration: '2018 - 2022',
         logoUrl: '',
       ),
-      EducationEntry(
+      const EducationEntry(
         degree: 'High School Diploma',
         school: 'Ridgewood High School',
         duration: '2014 - 2018',

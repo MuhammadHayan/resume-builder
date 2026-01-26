@@ -7,6 +7,8 @@ class LabeledField extends StatelessWidget {
   final String hint;
   final IconData? icon;
   final int maxLines;
+  // 1. Add the controller property
+  final TextEditingController? controller;
 
   const LabeledField({
     super.key,
@@ -14,6 +16,7 @@ class LabeledField extends StatelessWidget {
     required this.hint,
     this.icon,
     this.maxLines = 1,
+    this.controller, // 2. Add to constructor
   });
 
   @override
@@ -33,7 +36,12 @@ class LabeledField extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          AppTextField(hint: hint, prefixIcon: icon, maxLines: maxLines),
+          AppTextField(
+            hint: hint,
+            prefixIcon: icon,
+            maxLines: maxLines,
+            controller: controller, // 3. Pass it to your text field
+          ),
         ],
       ),
     );

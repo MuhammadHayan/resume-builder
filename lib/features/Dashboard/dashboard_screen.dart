@@ -1,6 +1,6 @@
 // screens/home_dashboard_screen.dart
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:resume_builder/cores/constants/app_fonts.dart';
 import 'package:resume_builder/cores/responsive/responsive.dart';
 import 'package:resume_builder/cores/theme/theme_provider.dart';
@@ -42,7 +42,7 @@ class DashboardScreen extends StatelessWidget {
                 const SizedBox(height: 24),
                 const CreateCvCard(),
                 const SizedBox(height: 28),
-                _SectionHeader(title: 'Recent Drafts'),
+                const _SectionHeader(title: 'Recent Drafts'),
                 const SizedBox(height: 16),
                 SizedBox(
                   height: isMobile ? 240 : 280,
@@ -69,15 +69,17 @@ class DashboardScreen extends StatelessWidget {
   }
 }
 
-class _Header extends StatelessWidget {
+class _Header extends ConsumerWidget {
+  // Changed to ConsumerWidget
   const _Header();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final themeMode = ref.watch(themeProvider);
     final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
-    final themeProvider = context.watch<ThemeProvider>();
+    final isDark = themeMode == ThemeMode.dark;
 
     return Row(
       children: [
@@ -104,11 +106,10 @@ class _Header extends StatelessWidget {
         ),
 
         IconButton.filledTonal(
-          onPressed: themeProvider.toggle,
+          onPressed: () =>
+              ref.read(themeProvider.notifier).toggle(), // Call the method
           icon: Icon(
-            themeProvider.isDark
-                ? Icons.light_mode_outlined
-                : Icons.dark_mode_outlined,
+            isDark ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
           ),
         ),
       ],

@@ -22,15 +22,15 @@ class CVPreviewScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
+      body: const Column(
         children: [
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: const CVDocumentWidget(),
+              padding: EdgeInsets.all(20),
+              child: CVDocumentWidget(),
             ),
           ),
-          const BottomActionPanel(),
+          BottomActionPanel(),
         ],
       ),
       floatingActionButton: FloatingActionButton(

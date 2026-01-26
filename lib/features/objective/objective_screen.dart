@@ -83,7 +83,7 @@ class _ObjectiveInputCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(Icons.edit_note_rounded, color: AppColors.primary),
+              const Icon(Icons.edit_note_rounded, color: AppColors.primary),
               const SizedBox(width: 8),
               Text(
                 'Your Objective',
@@ -123,7 +123,11 @@ class _ObjectiveInputCard extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(Icons.lightbulb_outline, size: 18, color: AppColors.primary),
+              const Icon(
+                Icons.lightbulb_outline,
+                size: 18,
+                color: AppColors.primary,
+              ),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(

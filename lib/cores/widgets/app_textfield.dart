@@ -4,12 +4,15 @@ class AppTextField extends StatelessWidget {
   final String hint;
   final int maxLines;
   final IconData? prefixIcon;
+  // 1. Add the optional controller
+  final TextEditingController? controller;
 
   const AppTextField({
     super.key,
     required this.hint,
     this.maxLines = 1,
     this.prefixIcon,
+    this.controller, // 2. Add to constructor
   });
 
   @override
@@ -17,6 +20,7 @@ class AppTextField extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return TextField(
+      controller: controller, // 3. Assign the controller here
       maxLines: maxLines,
       decoration: InputDecoration(
         hintText: hint,
